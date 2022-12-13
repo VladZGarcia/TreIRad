@@ -46,8 +46,7 @@ class ViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        
+        overrideUserInterfaceStyle = .light
         initBoard()
     }
     
@@ -71,14 +70,14 @@ class ViewController: UIViewController {
         addToBoard(sender)
         if checkForVictory(CROSS){
             crossesScore += 1
-            resultAlert(title: "\(playerNameOne ?? "")  Win!")
+            resultAlert(title: "\(playerNameOne ?? "Player one")  Win!")
             return
         }
         if (!computerEasy || !computerMid || !computerHard) {
             if self.checkForVictory(self.NOUGHT){
                 self.noughtsScore += 1
                 
-                self.resultAlert(title: "\(playerNameTwo ?? "") Win!")
+                self.resultAlert(title: "\(playerNameTwo ?? "Player two") Win!")
                 return
             }
         }
@@ -240,7 +239,7 @@ class ViewController: UIViewController {
     
     func resultAlert(title: String) {
         
-        let message = "\n \(playerNameOne ?? "") score : " + String(crossesScore) + " win" + "\n\n \(playerNameTwo ?? "") score : " + String(noughtsScore) + " win"
+        let message = "\n \(playerNameOne ?? "Player one") score : " + String(crossesScore) + " win" + "\n\n \(playerNameTwo ?? "player two") score :"  + String(noughtsScore) + " win"
         
         let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { (_) in
@@ -291,17 +290,18 @@ class ViewController: UIViewController {
             if(currentTurn == Turn.Nought){
                 sender.setTitle(NOUGHT, for: .normal)
                 currentTurn = Turn.Cross
-                turnName.text = "\(playerNameOne ?? "")´s turn!"
+                turnName.text = "\(playerNameOne ?? "Player one")´s turn!"
                 turnLabel.text = CROSS
             }
             else if(currentTurn == Turn.Cross){
                 sender.setTitle(CROSS, for: .normal)
                 currentTurn = Turn.Nought
-                turnName.text = "\(playerNameTwo ?? "")´s turn!"
+                turnName.text = "\(playerNameTwo ?? "Player two")´s turn!"
                 turnLabel.text = NOUGHT
             }
             sender.isEnabled = false
         }
+        
     }
     
 }
